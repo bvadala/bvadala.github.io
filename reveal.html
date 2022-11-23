@@ -1,0 +1,95 @@
+<html><head><link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
+                background-color: #f1f1f1;
+            }
+            /* Hide all steps by default: */
+            .tab {
+                display: none;
+                text-align: center;
+            }
+            button {
+                background-color: #04AA6D;
+                color: #ffffff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 17px;
+                font-family: Raleway;
+                cursor: pointer;
+            }
+            #prevBtn {
+                background-color: #bbbbbb;
+            }
+
+            /* Make circles that indicate the steps of the form: */
+            .step {
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #bbbbbb;
+                border: none;  
+                border-radius: 50%;
+                display: inline-block;
+                opacity: 0.5;
+            }
+
+            .step.active {
+                opacity: 1;
+            }
+
+            /* Mark the steps that are finished and valid: */
+            .step.finish {
+                background-color: #04AA6D;
+            }
+
+            #confetti-canvas {
+                position:absolute;
+                top:0;
+            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div><img src="../../images/3rd.png"/></div><h1 id="thirdPlaceName">3rd place winner</h1></div><div class="tab"><div><img src="../../images/2nd.png"/></div><h1 id="secondPlaceName">2nd place winner</h1></div><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div><h1 id="firstPlaceName">1st place</h1></div><div style="overflow:auto;"><div style="text-align:center;"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div></div><div style="text-align:center;margin-top:40px;"><span class="step"></span> <span class="step"></span> <span class="step"></span> <span class="step"></span></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
+            showTab(currentTab); // Display the current tab
+
+            function showTab(n) {
+                var x = document.getElementsByClassName("tab");
+                x[n].style.display = "block";
+
+                if (n == 0) {
+                    document.getElementById("prevBtn").style.display = "none";
+                } else {
+                    document.getElementById("prevBtn").style.display = "inline";
+                }
+
+                if (n == (x.length - 1)) {
+                    document.getElementById("nextBtn").style.display = "none";
+                } else {
+                    document.getElementById("nextBtn").innerHTML = n == 0 ? "Begin Reveal" : "Next";
+                    document.getElementById("nextBtn").style.display = "inline";
+                }
+
+                fixStepIndicator(n)
+            }
+
+            function nextPrev(n) {
+                var x = document.getElementsByClassName("tab");
+
+                x[currentTab].style.display = "none";
+                currentTab = currentTab + n;
+
+                if (currentTab >= x.length) {
+                    return false;
+                }
+
+                if(currentTab == (x.length-1))
+                    startConfetti();
+                else
+                    stopConfetti();
+
+                showTab(currentTab);
+            }
+
+            function fixStepIndicator(n) {
+                // This function removes the "active" class of all steps...
+                var i, x = document.getElementsByClassName("step");
+                for (i = 0; i < x.length; i++) {
+                    x[i].className = x[i].className.replace(" active", "");
+                }
+                //... and adds the "active" class on the current step:
+                x[n].className += " active";
+            }</script><script src="../confetti.js"></script></body></html>
