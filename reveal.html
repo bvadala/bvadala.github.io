@@ -1,5 +1,5 @@
-<html><head><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
-                background-color: #f1f1f1;
+<html><head><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
+                /*background-color: #f1f1f1;*/
             }
             /* Hide all steps by default: */
             .tab {
@@ -17,12 +17,7 @@
             }
             #prevBtn {
                 background-color: #bbbbbb;
-            }
-
-            #confetti-canvas {
-                position:absolute;
-                top:0;
-            }            
+            }     
 
             .title {
                 font-size: 30pt;
@@ -42,6 +37,35 @@
                 padding: 60px;
                 overflow:auto;
                 text-align:center;
+            }
+
+            .table-results {
+                border-collapse: collapse;
+                border-radius:6px;
+                margin: 0 auto;
+                font-size: 0.9em;
+                font-family: sans-serif;
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+            .table-results thead tr {
+                background-color: #90a7d9;
+                border-radius:6px;
+                color: #ffffff;
+                text-align: left;
+            }
+            .table-results th,
+            .table-results td {
+                padding: 12px 15px;
+            }
+            .table-results tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
+            .table-results tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+            .table-results tbody tr:last-of-type {
+                border-bottom: 2px solid #90a7d9;
             }
 
             @keyframes fadein {
@@ -75,7 +99,7 @@
                 to {
                     opacity: 1;
                 }
-            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div class="trophy"><img src="../../images/3rd.png"/></div><div id="thirdPlaceName" class="title">3rd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/2nd.png"/></div><div id="secondPlaceName" class="title">2nd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/peopleschoice-small.png"/></div><div id="firstPlaceName" class="title">1st place</div><br><div style="width: 70%;"><table id="results"><thead><th>#</th><th>Project Name</th><th>Votes</th></thead><tbody></tbody></table></div></div><div class="navButtons"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
+            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div class="trophy"><img src="../../images/3rd.png"/></div><div id="thirdPlaceName" class="title">3rd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/2nd.png"/></div><div id="secondPlaceName" class="title">2nd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/peopleschoice-small.png"/></div><div id="firstPlaceName" class="title">1st place</div></div><div class="navButtons"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div><div id="allResults" style="text-align: center; padding-top: 20px; display: none;"><table id="results" class="table-results"><thead><tr><th>#</th><th>Project Name</th><th>Votes</th></tr></thead><tbody></tbody></table></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
             showTab(currentTab); // Display the current tab
 
             function showTab(n) {
@@ -90,9 +114,11 @@
 
                 if (n == (x.length - 1)) {
                     document.getElementById("nextBtn").style.display = "none";
+                    document.getElementById("allResults").style.display = "inline";
                 } else {
                     document.getElementById("nextBtn").innerHTML = n == 0 ? "Begin Reveal" : "Next";
                     document.getElementById("nextBtn").style.display = "inline";
+                    document.getElementById("allResults").style.display = "none";
                 }
             }
 
@@ -112,4 +138,42 @@
                     stopConfetti();
 
                 showTab(currentTab);
-            }</script><script src="../confetti.js"></script></body></html>
+            }
+
+            var duration = 30 * 1000;
+            var end = Date.now() + duration;
+            var runConfetti = false;
+            function startConfetti() {
+                runConfetti = true;
+                end = Date.now() + duration;
+                confettiFrame();
+            }
+
+            function confettiFrame() {
+                
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    drift: 1
+                    //colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    drift: -1
+                    //colors: colors
+                });
+
+                if ((Date.now() < end) && runConfetti) {
+                    requestAnimationFrame(confettiFrame);
+                }
+            }
+
+            function stopConfetti() {
+                runConfetti = false;
+                confetti.reset();
+            }</script></body></html>
