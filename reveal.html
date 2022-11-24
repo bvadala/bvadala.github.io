@@ -1,5 +1,5 @@
 <html><head><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
-                /*background-color: #f1f1f1;*/
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             }
             /* Hide all steps by default: */
             .tab {
@@ -12,7 +12,6 @@
                 border: none;
                 padding: 10px 20px;
                 font-size: 17px;
-                font-family: Raleway;
                 cursor: pointer;
             }
             #prevBtn {
@@ -61,12 +60,12 @@
             .table-results tbody tr {
                 border-bottom: 1px solid #dddddd;
             }
-            .table-results tbody tr:nth-of-type(even) {
+            /*.table-results tbody tr:nth-of-type(even) {
                 background-color: #f3f3f3;
             }
             .table-results tbody tr:last-of-type {
                 border-bottom: 2px solid #90a7d9;
-            }
+            }*/
 
             @keyframes fadein {
                 from {
@@ -99,7 +98,7 @@
                 to {
                     opacity: 1;
                 }
-            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div class="trophy"><img src="../../images/3rd.png"/></div><div id="thirdPlaceName" class="title">3rd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/2nd.png"/></div><div id="secondPlaceName" class="title">2nd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/peopleschoice-small.png"/></div><div id="firstPlaceName" class="title">1st place</div></div><div class="navButtons"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div><div id="allResults" style="text-align: center; padding-top: 20px; display: none;"><table id="results" class="table-results"><thead><tr><th>#</th><th>Project Name</th><th>Votes</th></tr></thead><tbody></tbody></table></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
+            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div class="trophy"><img src="../../images/third.png"/></div><div id="thirdPlaceName" class="title">3rd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/second.png"/></div><div id="secondPlaceName" class="title">2nd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/1st.png"/></div><div id="firstPlaceName" class="title">1st place</div></div><div class="navButtons"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div><div id="allResults" style="text-align: center; padding-top: 20px; display: none;"><table id="results" class="table-results"><thead><tr><th>#</th><th>Project Name</th><th>Votes</th></tr></thead><tbody></tbody></table></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
             showTab(currentTab); // Display the current tab
 
             function showTab(n) {
