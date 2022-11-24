@@ -1,4 +1,4 @@
-<html><head><link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
+<html><head><script src="https://trello.com/power-ups/power-up.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script><style>body {
                 background-color: #f1f1f1;
             }
             /* Hide all steps by default: */
@@ -22,7 +22,60 @@
             #confetti-canvas {
                 position:absolute;
                 top:0;
-            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div><img src="../../images/3rd.png"/></div><h1 id="thirdPlaceName">3rd place winner</h1></div><div class="tab"><div><img src="../../images/2nd.png"/></div><h1 id="secondPlaceName">2nd place winner</h1></div><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div><h1 id="firstPlaceName">1st place</h1><br><div><table id="results"><thead><th>#</th><th>Project Name</th><th>Votes</th></thead><tbody></tbody></table></div></div><div style="overflow:auto;"><div style="text-align:center;"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
+            }            
+
+            .title {
+                font-size: 30pt;
+                font-weight: bold;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                animation: fadein 5s;
+                -moz-animation: fadein 5s; /* Firefox */
+                -webkit-animation: fadein 5s; /* Safari and Chrome */
+                -o-animation: fadein 5s; /* Opera */
+            }
+
+            .trophy {
+                padding: 40px;
+            }
+
+            .navButtons {
+                padding: 60px;
+                overflow:auto;
+                text-align:center;
+            }
+
+            @keyframes fadein {
+                from {
+                    opacity:0;
+                }
+                to {
+                    opacity:1;
+                }
+            }
+            @-moz-keyframes fadein { /* Firefox */
+                from {
+                    opacity:0;
+                }
+                to {
+                    opacity:1;
+                }
+            }
+            @-webkit-keyframes fadein { /* Safari and Chrome */
+                from {
+                    opacity:0;
+                }
+                to {
+                    opacity:1;
+                }
+            }
+            @-o-keyframes fadein { /* Opera */
+                from {
+                    opacity:0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }</style><script defer="defer" src="reveal.js"></script></head><body><div class="tab"><div><img src="../../images/peopleschoice-small.png"/></div></div><div class="tab"><div class="trophy"><img src="../../images/3rd.png"/></div><div id="thirdPlaceName" class="title">3rd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/2nd.png"/></div><div id="secondPlaceName" class="title">2nd place winner</div></div><div class="tab"><div class="trophy"><img src="../../images/peopleschoice-small.png"/></div><div id="firstPlaceName" class="title">1st place</div><br><div style="width: 70%;"><table id="results"><thead><th>#</th><th>Project Name</th><th>Votes</th></thead><tbody></tbody></table></div></div><div class="navButtons"><button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button></div><script>var currentTab = 0; // Current tab is set to be the first tab (0)
             showTab(currentTab); // Display the current tab
 
             function showTab(n) {
