@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/interfaces/ISettings.ts":
+/*!*************************************!*\
+  !*** ./src/interfaces/ISettings.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.RankedVotingMethod = void 0;\r\nvar RankedVotingMethod;\r\n(function (RankedVotingMethod) {\r\n    RankedVotingMethod[RankedVotingMethod[\"Borda\"] = 0] = \"Borda\";\r\n    RankedVotingMethod[RankedVotingMethod[\"Copeland\"] = 1] = \"Copeland\";\r\n})(RankedVotingMethod = exports.RankedVotingMethod || (exports.RankedVotingMethod = {}));\r\n\n\n//# sourceURL=webpack://my-webpack-project/./src/interfaces/ISettings.ts?");
+
+/***/ }),
+
 /***/ "./src/services/settings-service.ts":
 /*!******************************************!*\
   !*** ./src/services/settings-service.ts ***!
   \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"defaultSettings\": () => (/* binding */ defaultSettings),\n/* harmony export */   \"getSettings\": () => (/* binding */ getSettings),\n/* harmony export */   \"updateSettings\": () => (/* binding */ updateSettings)\n/* harmony export */ });\nconst defaultSettings = { maxVotes: 3, useRankedVoting: false };\r\nfunction getSettings(t) {\r\n    return t.get('board', 'shared', 'settings', defaultSettings);\r\n}\r\nfunction updateSettings(t, settings) {\r\n    t.set('board', 'shared', 'settings', settings);\r\n}\r\n\n\n//# sourceURL=webpack://my-webpack-project/./src/services/settings-service.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.updateSettings = exports.getSettings = exports.defaultSettings = void 0;\r\nconst ISettings_1 = __webpack_require__(/*! ../interfaces/ISettings */ \"./src/interfaces/ISettings.ts\");\r\nexports.defaultSettings = { maxVotes: 3, useRankedVoting: false, rankedVotingAlgorithm: ISettings_1.RankedVotingMethod.Copeland };\r\nfunction getSettings(t) {\r\n    return t.get('board', 'shared', 'settings', exports.defaultSettings);\r\n}\r\nexports.getSettings = getSettings;\r\nfunction updateSettings(t, settings) {\r\n    t.set('board', 'shared', 'settings', settings);\r\n}\r\nexports.updateSettings = updateSettings;\r\n\n\n//# sourceURL=webpack://my-webpack-project/./src/services/settings-service.ts?");
 
 /***/ }),
 
@@ -24,9 +34,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*************************!*\
   !*** ./src/settings.ts ***!
   \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _services_settings_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/settings-service */ \"./src/services/settings-service.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\n\r\nconst t = window.TrelloPowerUp.iframe();\r\nconst maxVotesSelector = $('#maxVotes');\r\nconst useRankedVotingSelector = $('#useRankedVoting');\r\nlet currentSettings = _services_settings_service__WEBPACK_IMPORTED_MODULE_0__.defaultSettings;\r\nmaxVotesSelector.on('change', function () {\r\n    currentSettings.maxVotes = $(this).prop('value');\r\n    return (0,_services_settings_service__WEBPACK_IMPORTED_MODULE_0__.updateSettings)(t, currentSettings);\r\n});\r\nuseRankedVotingSelector.on('change', function () {\r\n    currentSettings.useRankedVoting = $(this).prop('checked');\r\n    return (0,_services_settings_service__WEBPACK_IMPORTED_MODULE_0__.updateSettings)(t, currentSettings);\r\n});\r\nfunction renderSettings(t) {\r\n    return __awaiter(this, void 0, void 0, function* () {\r\n        var settings = yield (0,_services_settings_service__WEBPACK_IMPORTED_MODULE_0__.getSettings)(t);\r\n        if (!settings.useRankedVoting)\r\n            settings.useRankedVoting = false;\r\n        maxVotesSelector.prop('value', settings.maxVotes);\r\n        useRankedVotingSelector.prop('checked', settings.useRankedVoting);\r\n        currentSettings = settings;\r\n    });\r\n}\r\nt.render(function () {\r\n    renderSettings(t);\r\n});\r\n\n\n//# sourceURL=webpack://my-webpack-project/./src/settings.ts?");
+eval("\r\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst settings_service_1 = __webpack_require__(/*! ./services/settings-service */ \"./src/services/settings-service.ts\");\r\nconst t = window.TrelloPowerUp.iframe();\r\nconst maxVotesSelector = $('#maxVotes');\r\nconst useRankedVotingSelector = $('#useRankedVoting');\r\nlet currentSettings = settings_service_1.defaultSettings;\r\nmaxVotesSelector.on('change', function () {\r\n    currentSettings.maxVotes = $(this).prop('value');\r\n    return (0, settings_service_1.updateSettings)(t, currentSettings);\r\n});\r\nuseRankedVotingSelector.on('change', function () {\r\n    currentSettings.useRankedVoting = $(this).prop('checked');\r\n    return (0, settings_service_1.updateSettings)(t, currentSettings);\r\n});\r\nfunction renderSettings(t) {\r\n    return __awaiter(this, void 0, void 0, function* () {\r\n        var settings = yield (0, settings_service_1.getSettings)(t);\r\n        if (!settings.useRankedVoting)\r\n            settings.useRankedVoting = false;\r\n        maxVotesSelector.prop('value', settings.maxVotes);\r\n        useRankedVotingSelector.prop('checked', settings.useRankedVoting);\r\n        currentSettings = settings;\r\n    });\r\n}\r\nt.render(function () {\r\n    renderSettings(t);\r\n});\r\n\n\n//# sourceURL=webpack://my-webpack-project/./src/settings.ts?");
 
 /***/ })
 
@@ -50,46 +60,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ser
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/settings.ts");
 /******/ 	
 /******/ })()
